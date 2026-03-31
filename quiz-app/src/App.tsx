@@ -62,16 +62,16 @@ export default function App() {
     return null
   }
 
-  const statusBanner = () => {
-    if (!answered) return null
-    const correct = selected === current.answer
-    return (
-      <div className={`px-8 py-3 border-b border-black text-xs uppercase tracking-widest font-bold
-        ${correct ? 'bg-black text-white' : 'bg-white text-black border-t'}`}>
-        {correct ? '✓ Correct' : `✗ Wrong — correct answer: ${current.answer}`}
-      </div>
-    )
-  }
+  // const statusBanner = () => {
+  //   if (!answered) return null
+  //   const correct = selected === current.answer
+  //   return (
+  //     <div className={`px-8 py-3 border-b border-black text-xs uppercase tracking-widest font-bold
+  //       ${correct ? 'bg-black text-white' : 'bg-white text-black border-t'}`}>
+  //       {correct ? '✓ Correct' : `✗ Wrong — correct answer: ${current.answer}`}
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="min-h-screen bg-white text-black font-mono flex flex-col items-center px-4 py-5">
@@ -115,8 +115,6 @@ export default function App() {
           </p>
         </div>
 
-        {/* Status banner */}
-        {statusBanner()}
 
         {/* Options */}
         <div className="divide-y divide-gray-100">
