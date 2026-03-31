@@ -156,9 +156,9 @@ export default function App() {
         </div>
       </div>
 
-      <div className="mt-7 w-full max-w-2xl flex flex-col items-center gap-2">
+      <div className="mt-auto pt-10 w-full max-w-2xl flex flex-col items-center gap-2">
         <p className="text-[11px] text-gray-400 text-center leading-tight">
-          This quiz is for study purposes only. Questions and explanations are AI-generated based on the official Databricks ML Associate exam guide and may not reflect the exact wording or content of the actual exam. Always refer to official Databricks documentation.
+          This quiz is for study purposes only. Questions and explanations are AI-generated based on the official Databricks ML Associate exam guide and may not reflect the exact wording or content of the actual exam.
         </p>
         <a href="https://boyealhagie.com" target="_blank" rel="noreferrer"
           className="text-xs text-gray-300 uppercase tracking-widest hover:text-black transition-colors">
