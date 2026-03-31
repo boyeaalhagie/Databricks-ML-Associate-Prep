@@ -104,7 +104,7 @@ export default function App() {
 
         {/* Question */}
         <div className="p-8 border-b border-black">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">Question {current.id}</p>
+          <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">Question</p>
           <p className="text-base leading-relaxed font-semibold">{current.question}</p>
         </div>
 
