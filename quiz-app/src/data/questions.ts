@@ -2253,4 +2253,276 @@ export const questions: Question[] = [
     explanation:
       "pyspark.ml.feature.Imputer is a SparkML transformer (with fit/transform) that can be included in a SparkML Pipeline. It supports mean, median, and mode strategies.",
   },
+
+  // ─── CONCEPT PRACTICE QUESTIONS (151–168) ───────────────────────────────
+  {
+    id: 151,
+    section: "Data Processing",
+    question:
+      "A data scientist is preparing a model on employee records. The dataset contains job title (categorical, 15% missing), annual salary (right-skewed, 8% missing), and years of experience (normally distributed with outliers, 5% missing). Which imputation approach is most appropriate for each column?",
+    options: [
+      "A. Mean for salary, mode for job title, and mean for years of experience.",
+      "B. Mode for job title, median for salary, and median with outlier clipping for years of experience.",
+      "C. Mean for all numerical columns, mode for categorical.",
+      "D. Drop all rows containing any missing value.",
+    ],
+    answer: "B",
+    explanation:
+      "Mode is appropriate for categorical columns like job title. Median is robust to skew, making it better than mean for salary. Years of experience has outliers, so a median-based or outlier-clipped strategy is preferred over mean, which is pulled by extreme values.",
+  },
+  {
+    id: 152,
+    section: "Databricks Machine Learning",
+    question:
+      "An ML engineer wants to register a logged MLflow model to Unity Catalog at the path prod.marketing.lead_scorer. Compared to registering to the workspace registry, which additional step is required?",
+    options: [
+      "A. Set the experiment name to match the Unity Catalog path before training.",
+      "B. Call mlflow.set_registry_uri('databricks-uc') and provide a model signature before registering.",
+      "C. Manually create the catalog and schema in SQL before calling register_model().",
+      "D. Export the model to ONNX format for Unity Catalog compatibility.",
+    ],
+    answer: "B",
+    explanation:
+      "To target Unity Catalog, you must redirect the registry with mlflow.set_registry_uri('databricks-uc') and supply a model signature. The model name must use the three-level catalog.schema.model format. None of these steps are required for the workspace registry.",
+  },
+  {
+    id: 153,
+    section: "Databricks Machine Learning",
+    question:
+      "A model is logged using fe.log_model() after being trained with a Feature Store training set. What happens automatically when fe.score_batch() is called at inference time?",
+    options: [
+      "A. The model is retrained using the latest values in the feature table.",
+      "B. The stored feature lineage is used to automatically fetch and join the correct features to the input DataFrame.",
+      "C. All feature values must still be passed manually to score_batch().",
+      "D. The model signature is validated, but no features are retrieved.",
+    ],
+    answer: "B",
+    explanation:
+      "When a model is logged via the Feature Engineering Client, the feature metadata is stored with the model. At scoring time, score_batch() reads that lineage and automatically looks up and joins the required feature columns — the caller only needs to provide the entity keys.",
+  },
+  {
+    id: 154,
+    section: "Databricks Machine Learning",
+    question:
+      "An engineer calls fe.score_batch(model_uri, df) on a model that was trained using Feature Store features. What is the minimum content df must contain?",
+    options: [
+      "A. All feature columns that were used during training.",
+      "B. Only the entity primary key(s) used to look up features in the feature table.",
+      "C. The target label column from the original training dataset.",
+      "D. A timestamp column for point-in-time feature lookups.",
+    ],
+    answer: "B",
+    explanation:
+      "Because feature lineage is embedded in the model artifact, score_batch() only needs the entity key (e.g., user_id, product_id) to look up and join all required features automatically.",
+  },
+  {
+    id: 155,
+    section: "Databricks Machine Learning",
+    question:
+      "A data scientist needs to add searchable metadata tags to a registered model version in Unity Catalog. Which privilege is required to perform this action?",
+    options: [
+      "A. MODIFY",
+      "B. EXECUTE",
+      "C. APPLY_TAG",
+      "D. MANAGE",
+    ],
+    answer: "C",
+    explanation:
+      "The APPLY_TAG privilege grants the ability to set, update, or delete tags on Unity Catalog securable objects, including registered model versions. MODIFY and MANAGE are broader privileges not specifically designed for tagging.",
+  },
+  {
+    id: 156,
+    section: "Data Processing",
+    question:
+      "Which Databricks command produces an interactive visual data profile — including column statistics, value distributions, and null counts — directly inside a notebook cell?",
+    options: [
+      "A. df.printSchema()",
+      "B. df.describe().show()",
+      "C. dbutils.data.summarize(df)",
+      "D. display(df.summary())",
+    ],
+    answer: "C",
+    explanation:
+      "dbutils.data.summarize(df) generates the built-in Databricks data profile widget with histograms, statistics, and null percentages for each column. df.describe() and display(df.summary()) return tabular statistics but not the full visual profile.",
+  },
+  {
+    id: 157,
+    section: "Model Deployment",
+    question:
+      "A developer wants to query a Databricks model serving endpoint from an external application. Which of the following is a valid authentication method for sending inference requests?",
+    options: [
+      "A. SSH key pair configured on the cluster.",
+      "B. A Databricks Personal Access Token (PAT) passed in the Authorization header.",
+      "C. AWS IAM role assumed directly by the external application.",
+      "D. Kerberos ticket from the corporate Active Directory.",
+    ],
+    answer: "B",
+    explanation:
+      "Databricks model serving endpoints accept Bearer token authentication via a PAT in the Authorization HTTP header. SSH keys, IAM roles (directly), and Kerberos are not supported authentication methods for the serving REST API.",
+  },
+  {
+    id: 158,
+    section: "Data Processing",
+    question:
+      "A linear regression model predicting home sale prices shows that residuals fan outward as fitted values increase. Which transformation most directly addresses this variance instability?",
+    options: [
+      "A. Apply z-score standardization to all input features.",
+      "B. Apply a log transformation to the target variable.",
+      "C. Apply PCA to reduce the number of input features.",
+      "D. Apply min-max scaling to all input features.",
+    ],
+    answer: "B",
+    explanation:
+      "Fanning residuals indicate heteroscedasticity. A log transformation on the target variable compresses the upper range of values, stabilizing variance across the prediction range. Scaling inputs does not address variance in the target.",
+  },
+  {
+    id: 159,
+    section: "Data Processing",
+    question:
+      "A dataset of sensor readings is roughly bell-shaped but contains occasional extreme spikes. Which outlier detection approach is most robust when the distribution has heavy tails?",
+    options: [
+      "A. Flag values more than 3 standard deviations from the mean.",
+      "B. Use the interquartile range (IQR) and flag values below Q1 − 1.5×IQR or above Q3 + 1.5×IQR.",
+      "C. Inspect the min and max from df.describe() and manually set thresholds.",
+      "D. Remove the top and bottom 0.1% of values by rank.",
+    ],
+    answer: "B",
+    explanation:
+      "The IQR method is resistant to the outliers themselves distorting the threshold — unlike mean/std which are pulled by extreme values. This makes IQR more reliable when heavy tails or spikes are present.",
+  },
+  {
+    id: 160,
+    section: "Databricks Machine Learning",
+    question:
+      "A data scientist opens a specific MLflow run in the Tracking UI. Which of the following information is displayed on the Run page?",
+    options: [
+      "A. A live CPU and memory utilization graph for the training cluster.",
+      "B. Logged parameters, metrics, tags, and model artifacts including the model signature.",
+      "C. A side-by-side comparison chart of this run against all other runs in the experiment.",
+      "D. The Unity Catalog feature table schemas used during training.",
+    ],
+    answer: "B",
+    explanation:
+      "The MLflow Run page shows the run's logged parameters, metrics over steps, custom tags, and the artifact tree (including the model and its signature). Live cluster metrics are in the Databricks cluster UI, and cross-run comparisons are on the Compare Runs page.",
+  },
+  {
+    id: 161,
+    section: "Model Development",
+    question:
+      "A team has a large hyperparameter search space but limited compute budget. They need to find a good configuration without exhaustively evaluating every combination. Which search strategy best fits this constraint?",
+    options: [
+      "A. Grid search — guarantees finding the optimal combination.",
+      "B. Random search — efficiently samples the space with fewer total evaluations.",
+      "C. Bayesian optimization — always converges faster than random search.",
+      "D. Manual tuning — eliminates wasted evaluations entirely.",
+    ],
+    answer: "B",
+    explanation:
+      "Random search samples randomly from the hyperparameter space and empirically tends to find good configurations with far fewer evaluations than grid search. Bayesian optimization can be more efficient but requires more setup and is better suited when evaluations are very expensive.",
+  },
+  {
+    id: 162,
+    section: "Model Development",
+    question:
+      "A neural network trained with mean squared error (MSE) loss shows erratic loss spikes on batches that contain large prediction errors. What is the most direct cause?",
+    options: [
+      "A. The learning rate scheduler is missing from the training config.",
+      "B. MSE squares each error, so large residuals produce disproportionately large gradients that destabilize weight updates.",
+      "C. The model architecture does not have enough layers for the dataset size.",
+      "D. The batch size is too large for the available GPU memory.",
+    ],
+    answer: "B",
+    explanation:
+      "MSE penalizes errors quadratically. When large errors exist, their squared contribution dominates the gradient, causing large unstable weight updates. Switching to a loss like MAE or Huber loss can reduce this sensitivity.",
+  },
+  {
+    id: 163,
+    section: "Model Development",
+    question:
+      "A regression model reports an R-squared (R²) value of 0.84 on the held-out test set. How should this value be interpreted?",
+    options: [
+      "A. The model's average prediction error is 0.16 units.",
+      "B. 84% of the variance in the target variable is explained by the model.",
+      "C. The model makes correct predictions 84% of the time.",
+      "D. The RMSE of the model is 0.16.",
+    ],
+    answer: "B",
+    explanation:
+      "R-squared is the proportion of variance in the target explained by the model (range: −∞ to 1.0; higher is better). It does not directly represent accuracy, error magnitude, or RMSE.",
+  },
+  {
+    id: 164,
+    section: "Model Development",
+    question:
+      "What is the primary reason to pass SparkTrials() instead of Trials() to Hyperopt's fmin() function?",
+    options: [
+      "A. SparkTrials allows the objective function to be maximized rather than minimized.",
+      "B. SparkTrials distributes individual hyperparameter trials across Spark workers for parallel evaluation.",
+      "C. SparkTrials automatically selects the optimal search algorithm (tpe vs. random).",
+      "D. SparkTrials caches the training dataset in memory to speed up repeated reads.",
+    ],
+    answer: "B",
+    explanation:
+      "SparkTrials parallelizes Hyperopt trials by running each trial on a separate Spark task, reducing total wall-clock tuning time. Trials() runs everything sequentially on the driver. The search algorithm is set separately via the algo parameter.",
+  },
+  {
+    id: 165,
+    section: "Model Deployment",
+    question:
+      "A data scientist needs to score 500 million records stored in a Delta table using a model logged in MLflow. Which approach avoids driver memory bottlenecks and scales efficiently?",
+    options: [
+      "A. Load all records into a pandas DataFrame on the driver, then call model.predict().",
+      "B. Wrap the MLflow model as a pandas_udf and apply it to a Spark DataFrame.",
+      "C. Call the model's REST endpoint once per record from a loop on the driver.",
+      "D. Downsample to 10 million records and run pandas inference.",
+    ],
+    answer: "B",
+    explanation:
+      "A pandas_udf (or Spark UDF) distributes inference across all cluster workers and processes data partition-by-partition. This avoids collecting data to the driver and scales linearly with cluster size.",
+  },
+  {
+    id: 166,
+    section: "Data Processing",
+    question:
+      "A categorical feature has 200 unique values and will be used in a gradient boosted tree model. Which encoding strategy is most practical?",
+    options: [
+      "A. One-hot encode it, producing 200 sparse binary columns.",
+      "B. Leave the values as raw strings and let the model handle them natively.",
+      "C. Use target encoding, replacing each category with the mean target value for that category.",
+      "D. Use binary encoding only — it works for features with exactly 2 values.",
+    ],
+    answer: "C",
+    explanation:
+      "For high-cardinality categoricals, one-hot encoding creates a very wide, sparse feature space that hurts training efficiency. Target encoding maps each category to a meaningful numerical signal (mean target), keeping dimensionality low. Care must be taken to avoid target leakage using cross-validation folds.",
+  },
+  {
+    id: 167,
+    section: "Model Development",
+    question:
+      "A fraud detection model achieves 96% precision but only 38% recall. The business requirement is to catch as many fraudulent transactions as possible while keeping false alarms reasonable. Which single metric should the team optimize?",
+    options: [
+      "A. Precision — to further reduce false positives.",
+      "B. Accuracy — since high precision already indicates a good model.",
+      "C. F1 Score — to balance catching fraud against generating false alarms.",
+      "D. RMSE — to minimize the average distance between predicted and actual labels.",
+    ],
+    answer: "C",
+    explanation:
+      "The model's low recall means it misses most fraud. F1 Score is the harmonic mean of precision and recall, so improving it forces the model to improve on both dimensions simultaneously. Optimizing precision alone would ignore the recall problem, and RMSE is a regression metric.",
+  },
+  {
+    id: 168,
+    section: "Model Deployment",
+    question:
+      "A team trains models in a staging workspace and promotes them to a production workspace. Production data has a noticeably different distribution than staging data. Which promotion strategy is most appropriate?",
+    options: [
+      "A. Promote the serialized model artifact and deploy it directly to production.",
+      "B. Promote the training code to production and retrain the model on production data.",
+      "C. Keep the staging model in production until a data drift alert fires.",
+      "D. Register the staging model in Unity Catalog and share it to the production workspace.",
+    ],
+    answer: "B",
+    explanation:
+      "When data distributions differ between environments, a model trained on staging data may underperform in production. Promoting the training code and retraining on production data ensures the model reflects the actual production distribution.",
+  },
 ];
