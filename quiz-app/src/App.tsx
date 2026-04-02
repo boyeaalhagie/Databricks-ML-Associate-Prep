@@ -80,7 +80,8 @@ export default function App() {
       {/* Header */}
       <div className="w-full max-w-2xl mb-6">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">
-          Databricks Certified Machine Learning Associate
+          <span className="sm:hidden">Databricks Certified ML Associate</span>
+          <span className="hidden sm:inline">Databricks Certified Machine Learning Associate</span>
         </p>
         <h1 className="text-xl font-bold tracking-tight">Quiz Prep</h1>
       </div>
