@@ -1,7 +1,12 @@
-import { useState, useCallback, useMemo } from 'react'
-import { questions } from './data/questions'
+// THIS IS THE MAIN REACT COMPONENT FOR THE QUIZ APP. 
 
-// Shuffle options and remap the correct answer letter to the new position
+//It manages state for the current question index, whether the answer is revealed, and which option is selected. It also handles shuffling questions and options, and rendering the UI.
+
+
+import { useState, useCallback, useMemo } from 'react'
+import { questions } from './data/databricks-ml-associate'
+
+// This function shuffles options and remap the correct answer letter to the new position. this ensures the correct answer is always in a different position each time the app loads, preventing memorization of option order and encouraging true understanding of the material. The shuffling is done once per question and stored in state to maintain consistency as the user navigates through the quiz.
 function shuffleOptions(options: string[], correctLetter: string) {
   const letters = ['A', 'B', 'C', 'D']
   const correctIndex = letters.indexOf(correctLetter)
@@ -68,6 +73,10 @@ export default function App() {
     if (!answered) return null
     const isCorrect = letter === newCorrect
     const isSelected = letter === selected
+
+    // Show ✓ for correct selections, ✗ for incorrect selections, and also show ✓ for 
+    // the correct answer if it wasn't selected. This provides clear feedback on what 
+    // the right answer was and whether the user's choice was correct or not.
     if (isSelected && isCorrect)  return <span className="ml-auto shrink-0 text-white text-xs font-bold">✓</span>
     if (isSelected && !isCorrect) return <span className="ml-auto shrink-0 text-black text-xs font-bold opacity-50">✗</span>
     if (!isSelected && isCorrect) return <span className="ml-auto shrink-0 text-white text-xs font-bold">✓</span>
@@ -158,13 +167,38 @@ export default function App() {
       </div>
 
       <div className="mt-auto pt-10 w-full max-w-2xl flex flex-col items-center gap-2">
-        <p className="text-[11px] text-gray-400 text-center leading-tight">
+        {/* Disclaimer */}
+        <p className="hidden sm:block text-[11px] text-gray-400 text-center leading-tight">
           This quiz is for study purposes only. Questions and explanations are AI-generated based on the official Databricks ML Associate exam guide and may not reflect the exact wording or content of the actual exam.
         </p>
-        <a href="https://boyealhagie.com" target="_blank" rel="noreferrer"
-          className="text-xs text-gray-300 uppercase tracking-widest hover:text-black transition-colors">
-          by alhagie boye
-        </a>
+        
+        <div className="flex flex-row justify-center w-full items-center gap-12">
+          {/* OFFICIAL DATABRICKS CERTIFIED MACHINE LEARNING ASSOCIATE EXAM GUIDE */}
+          <a
+            href="https://www.databricks.com/sites/default/files/2025-02/databricks-certified-machine-learning-associate-exam-guide-1-mar-2025.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="text-[11px] uppercase tracking-widest text-gray-400 hover:text-black transition-colors"
+          >
+            Exam Guide ↗
+          </a>
+
+          {/* CREATED BY */}
+          <a href="https://boyealhagie.com" target="_blank" rel="noreferrer"
+            className="text-[11px] text-gray-300 uppercase tracking-widest hover:text-black transition-colors">
+            by alhagie boye
+          </a>
+
+          {/* AFTER TAKING THE EXAM I CAME ACROSS THIS RESOURCE. */}
+          <a
+            href="https://www.certsafari.com/databricks/ml-engineer-associate"
+            target="_blank"
+            rel="noreferrer"
+            className="text-[11px] uppercase tracking-widest text-gray-400 hover:text-black transition-colors"
+          >
+            CertSafari ↗
+          </a>
+        </div>
       </div>
     </div>
   )
