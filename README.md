@@ -1,8 +1,8 @@
-# Databricks Certified Machine Learning Associate — Prep
+# Databricks Certified Machine Learning Associate Prep
 
-![Databricks](https://img.shields.io/badge/-Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white) not your average tool, actually pretty coolis cool
+![Databricks](https://img.shields.io/badge/-Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white) — where your data starts bronze and retires gold
 
-I built this quiz app while preparing for the Databricks Certified Machine Learning Associate. Went through all 168 questions twice — about 4 hours total — and that was all the prep I needed to pass. You might find it useful too. Good luck on the exam!
+I built this quiz app while preparing for the Databricks Certified Machine Learning Associate. Went through all 168 questions twice, about 4 hours total and that was all the prep I needed to pass. You might find it useful too. Good luck on the exam!
 
 ## Contents
 
@@ -16,15 +16,11 @@ Databricks-ML-Associate-Prep/
 
 - [Official Exam Guide (PDF)](https://www.databricks.com/sites/default/files/2025-02/databricks-certified-machine-learning-associate-exam-guide-1-mar-2025.pdf)
 - [Databricks Certification Page](https://www.databricks.com/learn/certification/machine-learning-associate)
-- [CertSafari Practice Questions](https://www.certsafari.com/databricks/ml-engineer-associate). found this after taking the exam :( but seems like a good resource for additional practice.
+- [CertSafari Practice Questions](https://www.certsafari.com/databricks/ml-engineer-associate). Found this after taking the exam :( but seems like a good resource for additional practice.
 
 ## Quiz App
 
 The quiz app lives in the `quiz-app/` folder. See its own README for setup instructions.
-
-## By
-
-[Alhagie Boye](https://boyealhagie.com)
 
 ## Disclaimer
 
