@@ -172,7 +172,7 @@ export default function App() {
           This quiz is for study purposes only. Questions and explanations are AI-generated based on the official Databricks ML Associate exam guide and may not reflect the exact wording or content of the actual exam.
         </p>
         
-        <div className="flex flex-row justify-center w-full items-center gap-12">
+        <div className="flex flex-row justify-center w-full items-center gap-10 sm:gap-24">
           {/* OFFICIAL DATABRICKS CERTIFIED MACHINE LEARNING ASSOCIATE EXAM GUIDE */}
           <a
             href="https://www.databricks.com/sites/default/files/2025-02/databricks-certified-machine-learning-associate-exam-guide-1-mar-2025.pdf"
