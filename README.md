@@ -20,7 +20,7 @@ Databricks-ML-Associate-Prep/
 
 ## Quiz App
 
-The quiz app lives in the `quiz-app/` folder. See its own [README](https://github.com/boyeaalhagie/Databricks-ML-Associate-Prep/edit/main/README.md) for setup instructions.
+The quiz app lives in the `quiz-app/` folder. See its own [README](quiz-app/README.md) for setup instructions.
 
 ## Disclaimer
 
